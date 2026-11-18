@@ -2,6 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Scalar;
 using Scalar.AspNetCore;
 using SmartWorkSpaseADL.Data.Context;
+using SmartWorkSpaseADL.Entities.DAL.Entities;
+using SmartWorkSpaseADL.Repositories.Classes;
+using SmartWorkSpaseADL.Repositories.Interfaces;
+using SmartWorkSpasePLL.Services.Classes;
+using SmartWorkSpasePLL.Services.Interfaces;
 namespace SmartWorkSpasePL
 {
     public class Program
@@ -19,11 +24,16 @@ namespace SmartWorkSpasePL
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+           
+            builder.Services.AddScoped<IRepository<CompanySetting>, Repository<CompanySetting>>();
+            builder.Services.AddScoped<ICompanySettingService, CompanySettingService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.MapOpenApi();
                 app.MapScalarApiReference();
             }
 

@@ -10,4 +10,8 @@
     <ProjectReference Include="..\SmartWorkSpaseADL\SmartWorkSpaseADL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\Respons\" />
+  </ItemGroup>
+
 </Project>
