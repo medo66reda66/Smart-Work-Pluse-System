@@ -33,9 +33,14 @@ namespace SmartWorkSpaseADL.Data.Configiration
                 .IsRequired();
 
             builder.HasOne(n => n.ApplicationUser)
-                .WithMany(u => u.Notifications)
+                .WithMany(u => u.ReceivedNotifications)
                 .HasForeignKey(n => n.ApplicationUserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(n => n.RelatedUser)
+                .WithMany(u => u.RelatedNotifications)
+                .HasForeignKey(n => n.RelatedUserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace SmartWorkSpaseADL.Repositories.Classes
             Expression<Func<T, bool>>? filter = null
             )
         {
-            return (await (GetAllAsync(filter))).FirstOrDefault()!;
+            return await _context.Set<T>().FirstOrDefaultAsync(filter);
         }
 
         public async Task SaveChangesAsync()

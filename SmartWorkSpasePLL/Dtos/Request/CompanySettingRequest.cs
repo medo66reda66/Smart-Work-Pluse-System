@@ -53,7 +53,7 @@ namespace SmartWorkSpasePLL.Dtos.Request
         [Required]
         public decimal RewardAmount { get; set; } = 700;
         // قيمة المكافأة المالية.
-        
+
         [Required]
         public decimal BlueFineAmount { get; set; } = 1000;
         // قيمة الخصم الناتج عن Blue Cards.
