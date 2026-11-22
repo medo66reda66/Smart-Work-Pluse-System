@@ -1,7 +1,7 @@
 ﻿
 using SmartWorkSpaseADL.Entities;
 
-namespace SmartWorkSpasePLL.Dtos.Response
+namespace SmartWorkSpasePLL.Dtos.Respons
 {
     public class OvertimeSessionResponse
     {

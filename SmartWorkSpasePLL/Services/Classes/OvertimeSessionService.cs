@@ -2,7 +2,7 @@
 using SmartWorkSpaseADL.Entities;
 using SmartWorkSpaseADL.Repositories.Interfaces;
 using SmartWorkSpasePLL.Dtos.Request;
-using SmartWorkSpasePLL.Dtos.Response;
+using SmartWorkSpasePLL.Dtos.Respons;
 using SmartWorkSpasePLL.Services.Interfaces;
 
 namespace SmartWorkSpasePLL.Services.Classes

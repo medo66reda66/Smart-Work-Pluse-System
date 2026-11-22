@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Dtos\Respons\**" />
-    <EmbeddedResource Remove="Dtos\Respons\**" />
-    <None Remove="Dtos\Respons\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SmartWorkSpaseADL\SmartWorkSpaseADL.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.23" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />

@@ -67,8 +67,6 @@ namespace SmartWorkSpasePL
                 OvertimeSessionService
             >();
 
-            var app = builder.Build();
-
             // Development
             builder.Services.AddIdentity<Applicationuser, IdentityRole>(option =>
             {

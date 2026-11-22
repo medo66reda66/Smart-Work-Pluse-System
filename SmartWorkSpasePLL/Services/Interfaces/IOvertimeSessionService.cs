@@ -1,6 +1,6 @@
 ﻿
 using SmartWorkSpasePLL.Dtos.Request;
-using SmartWorkSpasePLL.Dtos.Response;
+using SmartWorkSpasePLL.Dtos.Respons;
 
 namespace SmartWorkSpasePLL.Services.Interfaces
 {
