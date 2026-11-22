@@ -23,3 +23,4 @@ namespace SmartWorkSpaseADL.Repositories.Interfaces
         Task SaveChangesAsync();
     }
 }
+

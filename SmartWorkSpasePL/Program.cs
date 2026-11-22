@@ -1,7 +1,4 @@
 
-using Microsoft.EntityFrameworkCore;
-
-using Hmoe_Maintenance.Utilise;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +14,7 @@ using SmartWorkSpaseADL.Repositories.Interfaces;
 
 using SmartWorkSpasePLL.Services.Classes;
 using SmartWorkSpasePLL.Services.Interfaces;
+using SmartWorkSpasePLL.Utilise;
 using System;
 using System.Text;
 using System.Threading.Tasks;
