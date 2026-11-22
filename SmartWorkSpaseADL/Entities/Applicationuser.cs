@@ -24,10 +24,15 @@ namespace SmartWorkSpaseADL.Entities
         public Gender gender { get; set; }
         public string ImageUrl { get; set; }=string.Empty;
 
-        public string ManagerId { get; set; } = string.Empty;
+        public string? ManagerId { get; set; } = string.Empty;
         public Applicationuser? Manager { get; set; }
 
-        public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
+        public ICollection<Notification> ReceivedNotifications { get; set; }
+       = new List<Notification>();
+
+        // Notifications related to this user (Employee)
+        public ICollection<Notification> RelatedNotifications { get; set; }
+            = new List<Notification>();
         public ICollection<AttendanceRecord> AttendanceRecords { get; set; } = new List<AttendanceRecord>();
         public ICollection<Card> Cards { get; set; } = new List<Card>();
         public ICollection<Reward> Rewards { get; set; } = new List<Reward>();

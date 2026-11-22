@@ -52,7 +52,7 @@ namespace SmartWorkSpaseADL.Repositories.Classes
         public async Task<T> GetByIdAsync(
             Expression<Func<T, bool>>? filter = null)
         {
-            return (await GetAllAsync(filter)).FirstOrDefault()!;
+            return await _context.Set<T>().FirstOrDefaultAsync(filter);
         }
 
         public async Task SaveChangesAsync()
