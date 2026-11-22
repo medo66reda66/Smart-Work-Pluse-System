@@ -16,8 +16,10 @@ namespace SmartWorkSpasePLL.Services.Interfaces
 
         Task AddCompanySettingAsync(CompanySettingRequest companySettingRequest);
 
+
         Task<bool> UpdateCompanySettingAsync(int id, CompanySettingRequest companySettingRequest);
 
         Task<bool> DeleteCompanySettingAsync(int id);
+       
     }
 }
