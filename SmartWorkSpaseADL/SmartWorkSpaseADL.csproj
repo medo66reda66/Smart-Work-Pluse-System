@@ -16,9 +16,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Classes\" />
-    <Folder Include="Repositories\Interfaces\" />
-  </ItemGroup>
-
 </Project>
