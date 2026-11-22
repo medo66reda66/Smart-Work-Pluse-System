@@ -209,7 +209,6 @@ namespace SmartWorkSpaseADL.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ManagerId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("NormalizedEmail")
@@ -478,6 +477,9 @@ namespace SmartWorkSpaseADL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("RelatedUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -486,6 +488,8 @@ namespace SmartWorkSpaseADL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("RelatedUserId");
 
                     b.ToTable("Notifications");
                 });
@@ -752,8 +756,7 @@ namespace SmartWorkSpaseADL.Migrations
                     b.HasOne("SmartWorkSpaseADL.Entities.Applicationuser", "Manager")
                         .WithMany()
                         .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Manager");
                 });
@@ -802,12 +805,19 @@ namespace SmartWorkSpaseADL.Migrations
             modelBuilder.Entity("SmartWorkSpaseADL.Entities.Notification", b =>
                 {
                     b.HasOne("SmartWorkSpaseADL.Entities.Applicationuser", "ApplicationUser")
-                        .WithMany("Notifications")
+                        .WithMany("ReceivedNotifications")
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SmartWorkSpaseADL.Entities.Applicationuser", "RelatedUser")
+                        .WithMany("RelatedNotifications")
+                        .HasForeignKey("RelatedUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("RelatedUser");
                 });
 
             modelBuilder.Entity("SmartWorkSpaseADL.Entities.OvertimeSession", b =>
@@ -901,9 +911,11 @@ namespace SmartWorkSpaseADL.Migrations
 
                     b.Navigation("LedProjects");
 
-                    b.Navigation("Notifications");
-
                     b.Navigation("Payrolls");
+
+                    b.Navigation("ReceivedNotifications");
+
+                    b.Navigation("RelatedNotifications");
 
                     b.Navigation("Rewards");
 

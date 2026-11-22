@@ -17,5 +17,8 @@ namespace SmartWorkSpaseADL.Entities
         public string Message { get; set; } = string.Empty;
         public bool IsRead { get; set; }
         public DateTime CreatedAt { get; set; }
+
+        public string? RelatedUserId { get; set; } = string.Empty;
+        public Applicationuser RelatedUser { get; set; } = null!;
     }
 }
