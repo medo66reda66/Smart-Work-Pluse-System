@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SmartWorkSpaseADL\SmartWorkSpaseADL.csproj" />
+    <Compile Remove="Dtos\Respons\**" />
+    <EmbeddedResource Remove="Dtos\Respons\**" />
+    <None Remove="Dtos\Respons\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\Respons\" />
+    <ProjectReference Include="..\SmartWorkSpaseADL\SmartWorkSpaseADL.csproj" />
   </ItemGroup>
 
 </Project>

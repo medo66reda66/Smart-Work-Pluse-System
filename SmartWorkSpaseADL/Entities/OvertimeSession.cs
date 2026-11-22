@@ -29,6 +29,10 @@ namespace SmartWorkSpaseADL.Entities
         public Applicationuser? ApprovedBy { get; set; }
         public DateTime StartedAt { get; set; }
         public DateTime? EndedAt { get; set; }
+
+        [Required]
+        [StringLength(500)]
+        public string Reason { get; set; } = string.Empty;
         public int DurationMinutes { get; set; }
         public decimal RatePerMinute { get; set; }
 
