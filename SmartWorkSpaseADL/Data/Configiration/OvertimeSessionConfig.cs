@@ -20,7 +20,13 @@ namespace SmartWorkSpaseADL.Data.Configiration
 
             builder.Property(os => os.RatePerMinute)
                 .IsRequired()
-                .HasColumnType("decimal(18,2)");
+                .HasPrecision(18, 4);
+            builder.Property(os => os.Amount)
+                .IsRequired()
+                .HasPrecision(18, 2);
+            builder.Property(os => os.Reason)
+                .IsRequired()
+                .HasMaxLength(500);
 
             builder.HasOne(os => os.Employee)
                 .WithMany(e => e.Sessions)
