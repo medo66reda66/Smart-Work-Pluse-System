@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositories\Interfaces.cs\**" />
+    <EmbeddedResource Remove="Repositories\Interfaces.cs\**" />
+    <None Remove="Repositories\Interfaces.cs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.23" />
@@ -18,7 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Repositories\Classes\" />
-    <Folder Include="Repositories\Interfaces\" />
   </ItemGroup>
 
 </Project>
