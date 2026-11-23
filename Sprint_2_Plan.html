@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>وثيقة مواصفات السبرنت الثاني - SmartWorkspace</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap');
+
+        @page {
+            size: A4;
+            margin: 12mm 10mm 15mm 10mm;
+            @bottom-right {
+                content: counter(page);
+                font-family: 'Cairo', sans-serif;
+                font-size: 9pt;
+                color: #64748b;
+            }
+            @bottom-left {
+                content: "SmartWorkspace - Sprint 2 Specification Document";
+                font-family: 'Cairo', sans-serif;
+                font-size: 8pt;
+                color: #94a3b8;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+            color: #1e293b;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            font-size: 10pt;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            margin-top: 0;
+            color: #0f172a;
+        }
+
+        .en {
+            direction: ltr;
+            display: inline-block;
+            font-family: 'Segoe UI', Consolas, sans-serif;
+        }
+
+        code, pre {
+            font-family: 'Consolas', 'Courier New', monospace;
+            direction: ltr;
+            text-align: left;
+        }
+
+        code {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 9pt;
+            border: 1px solid #e2e8f0;
+        }
+
+        pre {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 8.5pt;
+            overflow-x: auto;
+            line-height: 1.45;
+            margin: 8px 0;
+        }
+
+        /* Cover & Header */
+        .header-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-banner h1 {
+            color: #ffffff;
+            font-size: 22pt;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .header-banner .subtitle {
+            font-size: 12pt;
+            color: #93c5fd;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 9pt;
+        }
+
+        .header-meta div span {
+            color: #cbd5e1;
+        }
+
+        .header-meta div strong {
+            color: #ffffff;
+        }
+
+        /* Summary Cards */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .team-card {
+            border-radius: 8px;
+            padding: 14px;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .card-green {
+            background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+        }
+
+        .card-blue {
+            background: linear-gradient(135deg, #3730a3 0%, #1e1b4b 100%);
+        }
+
+        .card-amber {
+            background: linear-gradient(135deg, #b45309 0%, #78350f 100%);
+        }
+
+        .team-card h3 {
+            color: white;
+            font-size: 13pt;
+            margin-bottom: 4px;
+        }
+
+        .team-card .role-title {
+            font-size: 9pt;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .team-card ul {
+            margin: 0;
+            padding-right: 18px;
+            font-size: 8.5pt;
+        }
+
+        .team-card li {
+            margin-bottom: 3px;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 22px;
+            page-break-inside: avoid;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2.5px solid #2563eb;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            margin-top: 10px;
+        }
+
+        .section-header.green {
+            border-bottom-color: #059669;
+        }
+
+        .section-header.blue {
+            border-bottom-color: #4f46e5;
+        }
+
+        .section-header.amber {
+            border-bottom-color: #d97706;
+        }
+
+        .section-header h2 {
+            font-size: 15pt;
+            margin: 0;
+            color: #0f172a;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 9999px;
+            font-size: 8pt;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-green { background-color: #d1fae5; color: #065f46; }
+        .badge-blue { background-color: #e0e7ff; color: #3730a3; }
+        .badge-amber { background-color: #fef3c7; color: #92400e; }
+        .badge-red { background-color: #fee2e2; color: #991b1b; }
+        .badge-slate { background-color: #f1f5f9; color: #334155; }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0 16px 0;
+            font-size: 8.5pt;
+        }
+
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 6px 9px;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fbfcfe;
+        }
+
+        .http-method {
+            font-weight: 700;
+            font-family: Consolas, monospace;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 7.5pt;
+            display: inline-block;
+        }
+
+        .http-get { background-color: #e0f2fe; color: #0369a1; }
+        .http-post { background-color: #dcfce7; color: #15803d; }
+        .http-put { background-color: #fef9c3; color: #a16207; }
+        .http-delete { background-color: #fee2e2; color: #b91c1c; }
+
+        /* Flow Diagrams */
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            gap: 8px;
+        }
+
+        .flow-box {
+            flex: 1;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 8px;
+            text-align: center;
+            font-size: 8.5pt;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .flow-box.active {
+            border-color: #2563eb;
+            background-color: #eff6ff;
+            font-weight: bold;
+        }
+
+        .flow-arrow {
+            color: #64748b;
+            font-size: 14pt;
+            font-weight: bold;
+        }
+
+        /* Callout boxes */
+        .callout {
+            border-right: 4px solid #2563eb;
+            background-color: #f0f7ff;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+            font-size: 9pt;
+        }
+
+        .callout.warning {
+            border-right-color: #d97706;
+            background-color: #fffbeb;
+        }
+
+        .callout.danger {
+            border-right-color: #dc2626;
+            background-color: #fef2f2;
+        }
+
+        .callout.success {
+            border-right-color: #059669;
+            background-color: #ecfdf5;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        /* Rules Box */
+        .rules-list {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 10px 18px;
+            margin: 8px 0;
+            font-size: 9pt;
+        }
+
+        .rules-list li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Banner -->
+    <div class="header-banner">
+        <h1>وثيقة المواصفات الفنية وتوزيع مهام السبرنت الثاني (Sprint 2)</h1>
+        <div class="subtitle">مشروع التخرج: SmartWorkspace Enterprise System (.NET 9 Web API)</div>
+        <div class="header-meta">
+            <div><span>تاريخ الإصدار:</span> <strong>نوفمبر 2026</strong></div>
+            <div><span>النمط المعماري:</span> <strong>Clean Layered Architecture (PL / PLL / ADL)</strong></div>
+            <div><span>إشراف وتنسيق:</span> <strong>مهندس محمود رضا زهرة</strong></div>
+            <div><span>حالة السبرنت:</span> <strong>Ready for Development</strong></div>
+        </div>
+    </div>
+
+    <!-- Team Work Division Cards -->
+    <div class="team-grid">
+        <div class="team-card card-green">
+            <h3>1. محمد أدهم</h3>
+            <div class="role-title">Attendance & Card Engine</div>
+            <ul>
+                <li>سجلات الحضور والانصراف (Check In / Out).</li>
+                <li>تحديد حالة الحضور (Present / Late / Absent).</li>
+                <li>توليد الكروت التلقائي (Green / Blue / Black).</li>
+                <li>نظام احتساب غياب اليوم (3 كروت سوداء).</li>
+                <li>مبادلة الكروت: الأخضر يلغي الأزرق.</li>
+                <li>التحقق من الغرامات المانعة قبل الدخول.</li>
+            </ul>
+        </div>
+
+        <div class="team-card card-blue">
+            <h3>2. حسن</h3>
+            <div class="role-title">Project & Task Lifecycle</div>
+            <ul>
+                <li>إدارة المشاريع بالكامل (إضافة / حذف / تعديل).</li>
+                <li>إدارة دورة حياة المشروع وحالاته (Status).</li>
+                <li>توزيع وإسناد المهام للموظفين (Tasks).</li>
+                <li>متابعة نسبة إنجاز كل موظف (0-100%).</li>
+                <li>إغلاق المشروع تلقائياً عند انتهاء المهام.</li>
+                <li>صلاحيات المدير (Manager) والموظف (Employee).</li>
+            </ul>
+        </div>
+
+        <div class="team-card card-amber">
+            <h3>3. محمود</h3>
+            <div class="role-title">Fine & Disciplinary System</div>
+            <ul>
+                <li>محرك حساب الغرامات بناءً على رصيد الكروت.</li>
+                <li>تطبيق قواعد الغرامات للأسود وصافي الأزرق.</li>
+                <li>تسجيل الغرامات اليدوية والإدارية.</li>
+                <li>دفع وتسوية الغرامات وطرق السداد.</li>
+                <li>رفع الحظر عن الموظف فور سداد الغرامات.</li>
+                <li>لوحة تقارير وإحصائيات الغرامات للإدارة.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Architecture & Conventions -->
+    <div class="section">
+        <div class="section-header">
+            <h2>المعايير المعمارية المشتركة في المشروع (Architecture & Standards)</h2>
+            <span class="badge badge-slate">Guidelines</span>
+        </div>
+        <p>
+            يعتمد نظام <strong>SmartWorkspace</strong> على تقسيم هيكلي من 3 طبقات رئيسية، ويجب على جميع أعضاء الفريق الالتزام التام بالمعايير التالية:
+        </p>
+        <div class="rules-list">
+            <li><strong>Data Access Layer (SmartWorkSpaseADL):</strong> تحتوي على الـ Entities و الـ DbContext و الـ EntityTypeConfiguration و نمط الـ Generic Repository (<code>IRepository&lt;T&gt;</code>). يُمنع كتابة أي منطق عمل (Business Logic) داخل هذه الطبقة.</li>
+            <li><strong>Business Logic Layer (SmartWorkSpasePLL):</strong> تحتوي على مجلد <code>Dtos/Request</code> ومجلد <code>Dtos/Respons</code> بالإضافة إلى الخدمات <code>Services/Interfaces</code> و <code>Services/Classes</code>. جميع العمليات الحسابية والتحقق من الشروط (Validations) تتم هنا حصراً.</li>
+            <li><strong>Presentation Layer (SmartWorkSpasePL):</strong> تحتوي على الـ Controllers. وظيفة الـ Controller هي استلام الـ HTTP Request، والتحقق من الـ Authorization، واستدعاء الخدمة المختصة، ثم إعادة <code>IActionResult</code> (مثل <code>Ok()</code>, <code>BadRequest()</code>, <code>NotFound()</code>).</li>
+            <li><strong>قراءة هوية المستخدم (Current User Context):</strong> استخراج الـ User Id دائماً عبر الـ JWT Claims: <br>
+                <code>var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);</code>
+            </li>
+            <li><strong>الربط مع إعدادات الشركة (CompanySetting):</strong> يتم استهلاك إعدادات مواعيد العمل والغرامات والكروت عبر <code>ICompanySettingService</code> المحقون بالـ DI.</li>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 1: MOHAMED ADHAM -->
+    <!-- ======================================================== -->
+    <div class="page-break"></div>
+
+    <div class="section">
+        <div class="section-header green">
+            <h2>الجزء الأول: مهام محمد أدهم (AttendanceRecord & Card Engine)</h2>
+            <span class="badge badge-green">Attendance & Cards</span>
+        </div>
+
+        <p>
+            يمثل هذا الجزء القلب النابض للنظام اليومي للموظف؛ حيث يتحكم في تسجيل الحضور والانصراف، والتحقق من الأهلية للدخول، وتطبيق نظام الكروت الملونة بناءً على مواعيد الدوام الرسمي وقواعد الشركة.
+        </p>
+
+        <div class="callout success">
+            <div class="callout-title">قواعد العمل المعتمدة لنظام الحضور والكروت (Business Rules):</div>
+            <ol style="margin: 0; padding-right: 18px;">
+                <li><strong>التحقق قبل الحضور (Check-In Pre-condition):</strong> قبل تسجيل الحضور، يتحقق النظام إذا كان إعداد <code>RequireFinePaymentBeforeCheckIn == true</code>، فإذا كان لدى الموظف غرامة مستحقة (<code>Status == "Unpaid"</code>) وتعيق الحضور (<code>BlocksCheckIn == true</code>)، يتم رفض تسجيل الدخول فوراً مع إرجاع رسالة خطأ واضحة بالدفع أولاً.</li>
+                <li><strong>منع التكرار:</strong> لا يمكن للموظف عمل Check In أكثر من مرة في نفس اليوم.</li>
+                <li><strong>حساب وقت وتصنيف الحضور (Shift 08:00 - 17:00):</strong>
+                    <ul>
+                        <li><strong>حضور مبكر أو في الموعد (قبل أو في تمام 8:00 صباحاً):</strong> الحالة <code>Present</code> ويحصل الموظف تلقائياً على <strong>كارت أخضر (Green Card)</strong> بمصدر <code>"EarlyArrival"</code>.</li>
+                        <li><strong>تأخير بسيط (بين 8:01 و 9:00 صباحاً - نافذة BlueWindowMinutes):</strong> الحالة <code>Late</code> ويحصل الموظف تلقائياً على <strong>كارت أزرق (Blue Card)</strong> بمصدر <code>"LateArrival"</code>.</li>
+                        <li><strong>تأخير شديد (بعد الساعة 9:00 صباحاً):</strong> الحالة <code>Late</code> ويحصل الموظف تلقائياً على <strong>كارت أسود (Black Card)</strong> بمصدر <code>"SevereLateArrival"</code>.</li>
+                    </ul>
+                </li>
+                <li><strong>حالة الغياب (Absent):</strong> عند غياب الموظف بدون إذن معتمد، يتم تسجيل سجل حضور بحالة <code>Absent</code> ويمنح الموظف <strong>3 كروت سوداء (3 Black Cards)</strong> بمصدر <code>"Absence"</code>.</li>
+                <li><strong>مبادلة وتسوية الكروت (Card Balancing & Cancellation):</strong>
+                    <ul>
+                        <li>الكارت الأخضر يلغي الكارت الأزرق (1 Green يلغي 1 Blue)؛ فتتحول حالة الاثنين إلى <code>Cancelled</code> ولا يستحق الموظف مكافأة ولا يدفع غرامة عن الكروت الملغاة.</li>
+                        <li><strong>الكارت الأسود غير قابل للإلغاء أو الاستبدال نهائياً!</strong> لا يُلغى بأي كارت أخضر ويبقى فعالاً حتى يتم فرض غرامته وسدادها.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Visual Flow for Mohamed Adham -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">مخطط سير عملية تسجيل الحضور (Check-In Flowchart):</h4>
+        <div class="flow-container">
+            <div class="flow-box">
+                <strong>1. طلب Check-In</strong><br>
+                <span style="font-size: 7.5pt; color: #64748b;">استخراج UserId من الـ Token</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box">
+                <strong>2. فحص الغرامات</strong><br>
+                <span style="font-size: 7.5pt; color: #dc2626;">هل توجد غرامة مانعة؟</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box active">
+                <strong>3. مقارنة الوقت بـ 8:00</strong><br>
+                <span style="font-size: 7.5pt; color: #2563eb;">حساب الفرق بالدقائق</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box">
+                <strong>4. إنشاء الكارت</strong><br>
+                <span style="font-size: 7.5pt; color: #059669;">Green / Blue / Black</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box">
+                <strong>5. حفظ بالـ Database</strong><br>
+                <span style="font-size: 7.5pt; color: #64748b;">سجل الحضور + الكارت</span>
+            </div>
+        </div>
+
+        <!-- Endpoints Table for Mohamed Adham -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">واجهات الـ API المطلوبة من محمد أدهم:</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 12%;">Method</th>
+                    <th style="width: 28%;">Endpoint Route</th>
+                    <th style="width: 22%;">Request / Query</th>
+                    <th style="width: 18%;">Response DTO</th>
+                    <th style="width: 20%;">الصلاحية (Role)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="http-method http-post">POST</span></td>
+                    <td><code>/api/Attendance/check-in</code></td>
+                    <td>Header: Bearer Token</td>
+                    <td><code>AttendanceRecordResponse</code></td>
+                    <td>Employee, Manager, HR, Admin</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-post">POST</span></td>
+                    <td><code>/api/Attendance/check-out</code></td>
+                    <td>Header: Bearer Token</td>
+                    <td><code>AttendanceRecordResponse</code></td>
+                    <td>Employee, Manager, HR, Admin</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Attendance/my-records</code></td>
+                    <td><code>?month=11&year=2026</code></td>
+                    <td><code>List&lt;AttendanceRecordResponse&gt;</code></td>
+                    <td>Employee (خاص به فقط)</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Attendance/all</code></td>
+                    <td><code>?date=...&department=...</code></td>
+                    <td><code>List&lt;AttendanceRecordResponse&gt;</code></td>
+                    <td>Admin, HR, Manager</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-post">POST</span></td>
+                    <td><code>/api/Attendance/evaluate-absence</code></td>
+                    <td><code>?date=2026-11-23</code></td>
+                    <td><code>AbsenceEvaluationResult</code></td>
+                    <td>Admin, HR</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Card/my-cards</code></td>
+                    <td><code>?color=Blue&status=Active</code></td>
+                    <td><code>List&lt;CardResponse&gt;</code></td>
+                    <td>Employee (كروته الخاصة)</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Card/summary</code></td>
+                    <td>Header: Bearer Token</td>
+                    <td><code>CardSummaryResponse</code></td>
+                    <td>Employee (إحصائيات كروته)</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-post">POST</span></td>
+                    <td><code>/api/Card/offset-balance</code></td>
+                    <td>Header: Bearer Token</td>
+                    <td><code>CardBalanceResultResponse</code></td>
+                    <td>Employee, HR, Admin</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Card/employee/{id}</code></td>
+                    <td>Route: <code>employeeId</code></td>
+                    <td><code>CardSummaryResponse</code></td>
+                    <td>Admin, HR, Manager</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- DTO Specifications for Mohamed Adham -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">نماذج البيانات (DTOs) لمحمد أدهم:</h4>
+        <pre><code>// 1. Attendance Record Response DTO
+public class AttendanceRecordResponse
+{
+    public int Id { get; set; }
+    public string EmployeeId { get; set; } = string.Empty;
+    public string EmployeeName { get; set; } = string.Empty;
+    public DateTime Date { get; set; }
+    public DateTime? CheckInTime { get; set; }
+    public DateTime? CheckOutTime { get; set; }
+    public string Status { get; set; } = string.Empty; // Present, Late, Absent, OnLeave
+    public List&lt;CardResponse&gt; CardsIssued { get; set; } = new();
+}
+
+// 2. Card Summary Response DTO
+public class CardSummaryResponse
+{
+    public string EmployeeId { get; set; } = string.Empty;
+    public int TotalGreenCards { get; set; }
+    public int TotalBlueCards { get; set; }
+    public int TotalBlackCards { get; set; }
+    public int ActiveGreenCards { get; set; }
+    public int ActiveBlueCards { get; set; }
+    public int ActiveBlackCards { get; set; }
+    public int CancelledCards { get; set; }
+    public int NetBlueCardsAfterOffset { get; set; } // max(0, ActiveBlue - ActiveGreen)
+}</code></pre>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 2: HASSAN -->
+    <!-- ======================================================== -->
+    <div class="page-break"></div>
+
+    <div class="section">
+        <div class="section-header blue">
+            <h2>الجزء الثاني: مهام حسن (Project & ProjectTask Lifecycle)</h2>
+            <span class="badge badge-blue">Project Management</span>
+        </div>
+
+        <p>
+            يتحمل هذا الجزء مسؤولية تنظيم العمل الجماعي والمشاريع، توزيع التكليفات على الموظفين، متابعة نسب الإنجاز للمهام، والربط المحكم بين الموظف والمشروع لضمان الشفافية ودقة الحسابات الإدارية.
+        </p>
+
+        <div class="callout">
+            <div class="callout-title">قواعد العمل المعتمدة لإدارة المشاريع والمهام (Business Rules):</div>
+            <ol style="margin: 0; padding-right: 18px;">
+                <li><strong>صلاحيات المشاريع (Manager & Admin Controls):</strong>
+                    <ul>
+                        <li>إنشاء المشروع، حذفه، تعيين قائد المشروع (Project Leader)، وتغيير حالته العامة هي صلاحية محصورة بالـ <code>Manager</code> والـ <code>Admin</code>.</li>
+                        <li>حالات المشروع: <code>NotStarted</code> &larr; <code>InProgress</code> &larr; <code>Completed</code> / <code>OnHold</code> / <code>Cancelled</code>.</li>
+                    </ul>
+                </li>
+                <li><strong>إسناد المهام للموظفين (Task Assignment):</strong>
+                    <ul>
+                        <li>المدير أو قائد المشروع هو من ينشئ المهام ويسندها إلى الموظف (<code>AssignedToId</code>).</li>
+                        <li>ترتبط المهمة تلقائياً بالـ <code>ProjectId</code> الأساسي.</li>
+                        <li>الحالة المبدئية لأي مهمة جديدة هي <code>ToDo</code> ونسبة الإنجاز <code>PercentComplete = 0</code>.</li>
+                    </ul>
+                </li>
+                <li><strong>تحديث نسبة الإنجاز وحالة المهمة (Task Progression):</strong>
+                    <ul>
+                        <li>الموظف المسند إليه المهمة يملك صلاحية تعديل نسبة الإنجاز (<code>PercentComplete</code> من 0 إلى 100) وإضافة الملاحظات (<code>Notes</code>).</li>
+                        <li>إذا أصبحت النسبة <code>100%</code> تتحول حالة المهمة تلقائياً إلى <code>Done</code>.</li>
+                        <li>إذا كانت النسبة بين <code>1%</code> و <code>99%</code> تتحول تلقائياً إلى <code>InProgress</code>.</li>
+                    </ul>
+                </li>
+                <li><strong>إغلاق المشروع والعودة للحالة الطبيعية (Auto-Completion & Status Reset):</strong>
+                    <ul>
+                        <li>عند اكتمال كافة المهام التابعة لمشروع معين بنسبة 100%، يتيح النظام تحويل حالة المشروع إلى <code>Completed</code>.</li>
+                        <li>يتم تحرير الموظفين وإعادتهم للحالة المتاحة (Idle/Ready) لاستقبال مشاريع ومهام جديدة.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Visual Flow for Hassan -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">مخطط دورة حياة المشروع والمهام (Project Lifecycle Flowchart):</h4>
+        <div class="flow-container">
+            <div class="flow-box">
+                <strong>1. إنشاء المشروع</strong><br>
+                <span style="font-size: 7.5pt; color: #4f46e5;">Manager ينشئ المشروع ويعين Leader</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box">
+                <strong>2. إنشاء وإسناد المهام</strong><br>
+                <span style="font-size: 7.5pt; color: #2563eb;">تحديد الموظف والـ DueDate</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box active">
+                <strong>3. تحديث الموظف لنسبة الإنجاز</strong><br>
+                <span style="font-size: 7.5pt; color: #059669;">PercentComplete (0-100%)</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box">
+                <strong>4. اكتمال كافة المهام</strong><br>
+                <span style="font-size: 7.5pt; color: #d97706;">تحول المشروع إلى Completed</span>
+            </div>
+        </div>
+
+        <!-- Endpoints Table for Hassan -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">واجهات الـ API المطلوبة من حسن:</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 12%;">Method</th>
+                    <th style="width: 28%;">Endpoint Route</th>
+                    <th style="width: 22%;">Request Body / Query</th>
+                    <th style="width: 18%;">Response DTO</th>
+                    <th style="width: 20%;">الصلاحية (Role)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="http-method http-post">POST</span></td>
+                    <td><code>/api/Project</code></td>
+                    <td><code>CreateProjectRequest</code></td>
+                    <td><code>ProjectResponse</code></td>
+                    <td>Admin, Manager</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Project</code></td>
+                    <td><code>?status=InProgress</code></td>
+                    <td><code>List&lt;ProjectResponse&gt;</code></td>
+                    <td>All Authenticated Users</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Project/{id}</code></td>
+                    <td>Route: <code>id</code></td>
+                    <td><code>ProjectDetailsResponse</code></td>
+                    <td>All Authenticated Users</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-put">PUT</span></td>
+                    <td><code>/api/Project/{id}/status</code></td>
+                    <td><code>UpdateProjectStatusRequest</code></td>
+                    <td><code>ProjectResponse</code></td>
+                    <td>Admin, Manager</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-delete">DELETE</span></td>
+                    <td><code>/api/Project/{id}</code></td>
+                    <td>Route: <code>id</code></td>
+                    <td><code>IActionResult (NoContent)</code></td>
+                    <td>Admin, Manager</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-post">POST</span></td>
+                    <td><code>/api/ProjectTask</code></td>
+                    <td><code>CreateProjectTaskRequest</code></td>
+                    <td><code>ProjectTaskResponse</code></td>
+                    <td>Admin, Manager</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-put">PUT</span></td>
+                    <td><code>/api/ProjectTask/{id}/progress</code></td>
+                    <td><code>UpdateTaskProgressRequest</code></td>
+                    <td><code>ProjectTaskResponse</code></td>
+                    <td>Assigned Employee, Manager</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/ProjectTask/my-tasks</code></td>
+                    <td><code>?status=InProgress</code></td>
+                    <td><code>List&lt;ProjectTaskResponse&gt;</code></td>
+                    <td>Employee (مهامه المسندة)</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/ProjectTask/project/{projectId}</code></td>
+                    <td>Route: <code>projectId</code></td>
+                    <td><code>List&lt;ProjectTaskResponse&gt;</code></td>
+                    <td>All Authenticated Users</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- DTO Specifications for Hassan -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">نماذج البيانات (DTOs) لحسن:</h4>
+        <pre><code>// 1. Create Project Request DTO
+public class CreateProjectRequest
+{
+    [Required] public string Name { get; set; } = string.Empty;
+    [Required] public string LeaderId { get; set; } = string.Empty;
+    [Required] public DateTime StartDate { get; set; }
+    [Required] public DateTime ExpectedEndDate { get; set; }
+}
+
+// 2. Project Task Response DTO
+public class ProjectTaskResponse
+{
+    public int Id { get; set; }
+    public int ProjectId { get; set; }
+    public string ProjectName { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
+    public string? AssignedToId { get; set; }
+    public string AssignedToName { get; set; } = string.Empty;
+    public string Status { get; set; } = string.Empty; // ToDo, InProgress, Done
+    public int PercentComplete { get; set; }
+    public string? Notes { get; set; }
+    public DateTime? DueDate { get; set; }
+}</code></pre>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 3: MAHMOUD -->
+    <!-- ======================================================== -->
+    <div class="page-break"></div>
+
+    <div class="section">
+        <div class="section-header amber">
+            <h2>الجزء الثالث: مهام محمود (Fine & Disciplinary System)</h2>
+            <span class="badge badge-amber">Fine & Penalties</span>
+        </div>
+
+        <p>
+            يمثل هذا الجزء نظام الغرامات والخصومات الانضباطية والمالية. يرتبط ارتباطاً وثيقاً برصيد كروت الموظف لدى محمد أدهم، ويتحكم مباشرة في صلاحية دخول الموظف وحضوره للعمل وفق سياسات الشركة.
+        </p>
+
+        <div class="callout warning">
+            <div class="callout-title">قواعد العمل المعتمدة لنظام الغرامات (Business Rules):</div>
+            <ol style="margin: 0; padding-right: 18px;">
+                <li><strong>محرك احتساب الغرامات من الكروت (Card-Driven Fine Calculation):</strong>
+                    <ul>
+                        <li>يتم فحص رصيد الكروت الفعالة للموظف (<code>CardStatus.Active</code>).</li>
+                        <li><strong>الكروت السوداء (Black Cards):</strong> كل كارت أسود لا يمكن إلغاؤه؛ ويتم احتساب غرامته مباشرة بضرب عدد الكروت السوداء الفعالة في <code>CompanySetting.BlackFineAmount</code>.</li>
+                        <li><strong>الكروت الزرقاء مقابل الخضراء (Blue vs Green Offset):</strong>
+                            <br>يتم احتساب صافي الكروت الزرقاء: <code>NetBlue = max(0, ActiveBlue - ActiveGreen)</code>.
+                            <br>إذا كان هناك فائض أزرق، يتم فرض غرامة عليه بضرب الفائض في <code>CompanySetting.BlueFineAmount</code>.
+                        </li>
+                        <li>فور إنشاء الغرامة من الكروت، تتحول حالة الكروت المعالجة إلى <code>Settled</code> أو <code>Cancelled</code> لمنع تكرار الغرامة على نفس الكروت.</li>
+                    </ul>
+                </li>
+                <li><strong>خصائص سجل الغرامة (Fine Lifecycle & Blocking):</strong>
+                    <ul>
+                        <li>تنشأ الغرامة بحالة <code>Status = "Unpaid"</code>.</li>
+                        <li>يتم ضبط <code>BlocksCheckIn = CompanySetting.RequireFinePaymentBeforeCheckIn</code> (افتراضياً <code>true</code>).</li>
+                        <li>تحدد فترة سماح للسداد (مثلاً 7 أيام) في <code>DueDate</code>، وإذا لم تسدد بعد هذا التاريخ تصبح الحالة <code>Overdue</code> ويتم حظر الحضور فوراً.</li>
+                    </ul>
+                </li>
+                <li><strong>سداد الغرامة ورفع الحظر (Payment & Unblocking):</strong>
+                    <ul>
+                        <li>يقوم الموظف بالسداد (نقداً، أو خصماً من المرتب، أو وسيلة إلكترونية <code>Method</code>).</li>
+                        <li>تتحول حالة الغرامة إلى <code>Status = "Paid"</code> و <code>PaidAt = true</code>.</li>
+                        <li><strong>رفع الحظر التلقائي:</strong> بمجرد سداد كافة الغرامات المانعة، يُرفع حظر تسجيل الحضور فوراً ويتمكن الموظف من تسجيل الـ Check-In بصورة طبيعية.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Visual Flow for Mahmoud -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">مخطط احتساب وسداد الغرامة (Fine Calculation & Settlement Flowchart):</h4>
+        <div class="flow-container">
+            <div class="flow-box">
+                <strong>1. جلب كروت الموظف</strong><br>
+                <span style="font-size: 7.5pt; color: #64748b;">Black & Blue & Green</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box">
+                <strong>2. معادلة المقاصة</strong><br>
+                <span style="font-size: 7.5pt; color: #2563eb;">Green يلغي Blue والأسود ثابت</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box active">
+                <strong>3. توليد سجل Fine</strong><br>
+                <span style="font-size: 7.5pt; color: #dc2626;">Unpaid & BlocksCheckIn</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box">
+                <strong>4. سداد الغرامة</strong><br>
+                <span style="font-size: 7.5pt; color: #059669;">Paid & تسجيل طريقة الدفع</span>
+            </div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-box">
+                <strong>5. فتح Check-In</strong><br>
+                <span style="font-size: 7.5pt; color: #047857;">رفع الحظر وإتاحة الدخول</span>
+            </div>
+        </div>
+
+        <!-- Endpoints Table for Mahmoud -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">واجهات الـ API المطلوبة من محمود:</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 12%;">Method</th>
+                    <th style="width: 28%;">Endpoint Route</th>
+                    <th style="width: 22%;">Request Body / Query</th>
+                    <th style="width: 18%;">Response DTO</th>
+                    <th style="width: 20%;">الصلاحية (Role)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="http-method http-post">POST</span></td>
+                    <td><code>/api/Fine/calculate-from-cards/{id}</code></td>
+                    <td>Route: <code>employeeId</code></td>
+                    <td><code>FineCalculationResultResponse</code></td>
+                    <td>Admin, Finance, Manager</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-post">POST</span></td>
+                    <td><code>/api/Fine/manual</code></td>
+                    <td><code>CreateManualFineRequest</code></td>
+                    <td><code>FineResponse</code></td>
+                    <td>Admin, Finance, Manager</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-post">POST</span></td>
+                    <td><code>/api/Fine/{id}/pay</code></td>
+                    <td><code>PayFineRequest</code></td>
+                    <td><code>FinePaymentResultResponse</code></td>
+                    <td>Employee, Finance, Admin</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Fine/my-fines</code></td>
+                    <td><code>?status=Unpaid</code></td>
+                    <td><code>List&lt;FineResponse&gt;</code></td>
+                    <td>Employee (غراماته فقط)</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Fine/summary</code></td>
+                    <td>Header: Bearer Token</td>
+                    <td><code>FineSummaryResponse</code></td>
+                    <td>Employee (ملخص الغرامات والحظر)</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-get">GET</span></td>
+                    <td><code>/api/Fine/all</code></td>
+                    <td><code>?employeeId=...&status=...</code></td>
+                    <td><code>List&lt;FineResponse&gt;</code></td>
+                    <td>Admin, Finance, Manager</td>
+                </tr>
+                <tr>
+                    <td><span class="http-method http-put">PUT</span></td>
+                    <td><code>/api/Fine/{id}/waive</code></td>
+                    <td><code>WaiveFineRequest</code> (سبب الإلغاء)</td>
+                    <td><code>FineResponse</code></td>
+                    <td>Admin, Finance</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- DTO Specifications for Mahmoud -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">نماذج البيانات (DTOs) لمحمود:</h4>
+        <pre><code>// 1. Fine Response DTO
+public class FineResponse
+{
+    public int Id { get; set; }
+    public string EmployeeId { get; set; } = string.Empty;
+    public string EmployeeName { get; set; } = string.Empty;
+    public string Type { get; set; } = string.Empty; // Blackcard, Bluecard, Disciplinary
+    public decimal Amount { get; set; }
+    public bool BlocksCheckIn { get; set; }
+    public string Status { get; set; } = string.Empty; // Unpaid, Paid, Overdue, Waived
+    public string? Method { get; set; }
+    public DateTime IssuedAt { get; set; }
+    public DateTime? DueDate { get; set; }
+    public bool PaidAt { get; set; }
+}
+
+// 2. Pay Fine Request DTO
+public class PayFineRequest
+{
+    [Required] public string Method { get; set; } = "Cash"; // Cash, SalaryDeduction, PayPal
+    public string? ReferenceTransactionId { get; set; }
+}</code></pre>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 4: INTEGRATION & MATRIX -->
+    <!-- ======================================================== -->
+    <div class="page-break"></div>
+
+    <div class="section">
+        <div class="section-header">
+            <h2>مصفوفة التكامل والترابط بين الأعضاء (Cross-Module Integration)</h2>
+            <span class="badge badge-slate">Integration</span>
+        </div>
+
+        <p>
+            تعتمد قوة النظام على التنسيق المشترك؛ إليك نقاط التماس والاعتمادية التي يجب على كل زميل الانتباه لها أثناء كتابة الكود:
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">الأطراف المتكاملة</th>
+                    <th style="width: 35%;">نقطة التماس البرمجية (Integration Point)</th>
+                    <th style="width: 40%;">الأثر البرمجي والسلوك المتوقع</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>محمد أدهم &harr; محمود</strong><br><span style="font-size: 8pt; color: #64748b;">Attendance vs Fines</span></td>
+                    <td>فحص الغرامات داخل <code>AttendanceRecordService.CheckInAsync()</code></td>
+                    <td>يستدعي محمد خدمة الغرامات أو يفحص جدول <code>Fines</code> للتأكد من عدم وجود غرامات <code>Unpaid</code> و <code>BlocksCheckIn == true</code> للموظف قبل إتمام الحضور.</td>
+                </tr>
+                <tr>
+                    <td><strong>محمد أدهم &harr; محمود</strong><br><span style="font-size: 8pt; color: #64748b;">Cards vs Fines</span></td>
+                    <td>تغذية محرك الغرامات بكروت <code>Cards</code></td>
+                    <td>يقرأ محمود سجلات جدول <code>Cards</code> التابع لمحمد أدهم لحساب الغرامات وتحويل حالة الكروت إلى <code>Settled</code> أو <code>Cancelled</code>.</td>
+                </tr>
+                <tr>
+                    <td><strong>حسن &harr; محمد أدهم</strong><br><span style="font-size: 8pt; color: #64748b;">Projects vs Attendance</span></td>
+                    <td>جاهزية الموظف وتواجده في أوقات المهام</td>
+                    <td>تمكين مدير المشروع من معرفة حالة تواجد الموظف (Present / Absent) عند إسناد المهام العاجلة والتأكد من توافره.</td>
+                </tr>
+                <tr>
+                    <td><strong>الجميع &harr; CompanySetting</strong><br><span style="font-size: 8pt; color: #64748b;">Shared Configuration</span></td>
+                    <td>الاعتماد على إعدادات الشركة المشتركة</td>
+                    <td>محمد يعتمد على <code>WorkStartTime</code> و <code>BlueWindowMinutes</code>؛ ومحمود يعتمد على <code>BlackFineAmount</code> و <code>BlueFineAmount</code> و <code>RequireFinePaymentBeforeCheckIn</code>.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Dependency Injection Code -->
+        <h4 style="margin-top: 14px; margin-bottom: 6px;">كود تسجيل الـ Dependency Injection المطلوب إضافته في Program.cs:</h4>
+        <pre><code>// ==========================================
+// Sprint 2 Repositories & Services Registration
+// ==========================================
+
+// 1. Mohamed Adham: Attendance & Cards
+builder.Services.AddScoped&lt;IRepository&lt;AttendanceRecord&gt;, Repository&lt;AttendanceRecord&gt;&gt;();
+builder.Services.AddScoped&lt;IRepository&lt;Card&gt;, Repository&lt;Card&gt;&gt;();
+builder.Services.AddScoped&lt;IAttendanceRecordService, AttendanceRecordService&gt;();
+builder.Services.AddScoped&lt;ICardService, CardService&gt;();
+
+// 2. Hassan: Projects & Project Tasks
+builder.Services.AddScoped&lt;IRepository&lt;ProjectTask&gt;, Repository&lt;ProjectTask&gt;&gt;();
+builder.Services.AddScoped&lt;IProjectService, ProjectService&gt;();
+builder.Services.AddScoped&lt;IProjectTaskService, ProjectTaskService&gt;();
+
+// 3. Mahmoud: Fines & Disciplinary
+builder.Services.AddScoped&lt;IRepository&lt;Fine&gt;, Repository&lt;Fine&gt;&gt;();
+builder.Services.AddScoped&lt;IFineService, FineService&gt;();</code></pre>
+    </div>
+
+    <!-- Acceptance Criteria & Testing Checklist -->
+    <div class="section">
+        <div class="section-header">
+            <h2>معايير القبول والفحص (Sprint 2 Acceptance Criteria)</h2>
+            <span class="badge badge-slate">QA & Verification</span>
+        </div>
+
+        <div class="rules-list">
+            <li><strong>فحص سيناريو الحضور المبكر:</strong> تسجيل Check-In قبل الساعة 8:00 صباحاً يُنشئ سجل <code>Present</code> وكارت أخضر تلقائياً.</li>
+            <li><strong>فحص سيناريو التأخير العادي:</strong> تسجيل Check-In الساعة 8:25 صباحاً يُنشئ سجل <code>Late</code> وكارت أزرق تلقائياً.</li>
+            <li><strong>فحص سيناريو التأخير الشديد:</strong> تسجيل Check-In الساعة 9:10 صباحاً يُنشئ سجل <code>Late</code> وكارت أسود تلقائياً.</li>
+            <li><strong>فحص سيناريو الغياب:</strong> موظف لم يسجل حضوراً حتى نهاية اليوم يُنشئ سجل <code>Absent</code> و 3 كروت سوداء.</li>
+            <li><strong>فحص المقاصة:</strong> موظف لديه 2 كارت أخضر و 3 كروت زرقاء؛ بعد التسوية يتبقى له 1 كارت أزرق فقط، وتتحول الكروت المتطابقة لـ Cancelled.</li>
+            <li><strong>فحص حظر الحضور:</strong> محاولة موظف لديه غرامة Unpaid عمل Check-In يجب أن تفشل فوراً مع رسالة خطأ، وبعد سداد الغرامة ينجح الـ Check-In مباشرة.</li>
+            <li><strong>فحص دورة حياة المشروع:</strong> إنشاء مهام لمشروع، وتعديل نسب إنجازها إلى 100% يتيح تحويل حالة المشروع إلى Completed بنجاح.</li>
+        </div>
+    </div>
+
+</body>
+</html>

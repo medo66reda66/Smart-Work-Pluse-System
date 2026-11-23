@@ -88,7 +88,7 @@ namespace SmartWorkSpasePL
             builder.Services.AddScoped<IAdminService, AdminService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IDBIntializer, DBIntializer>();
-            builder.Services.AddScoped<IDBIntializer, DBIntializer>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
 
 
             builder.Services.AddAuthentication(opt => {
