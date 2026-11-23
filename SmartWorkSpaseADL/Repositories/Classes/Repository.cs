@@ -1,8 +1,9 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using SmartWorkSpaseADL.Data.Context;
 using SmartWorkSpaseADL.Repositories.Interfaces;
+using System.Linq.Expressions;
 
 namespace SmartWorkSpaseADL.Repositories.Classes
 {
@@ -32,7 +33,9 @@ namespace SmartWorkSpaseADL.Repositories.Classes
 
         public async Task<List<T>> GetAllAsync(
             Expression<Func<T, bool>>? filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+            Expression<Func<T, object>>[]? includes = null
+            )
         {
             var entities = _context.Set<T>().AsQueryable();
 
@@ -46,13 +49,24 @@ namespace SmartWorkSpaseADL.Repositories.Classes
                 entities = orderBy(entities);
             }
 
+            if (includes != null)
+            {
+                foreach (var enclude in includes)
+                {
+                    entities = entities.Include(enclude);
+                }
+            }
+
             return await entities.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(
-            Expression<Func<T, bool>>? filter = null)
+            Expression<Func<T, bool>>? filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+            Expression<Func<T, object>>[]? includes = null
+            )
         {
-            return await _context.Set<T>().FirstOrDefaultAsync(filter);
+            return (await GetAllAsync(filter, orderBy,includes)).FirstOrDefault()!;
         }
 
         public async Task SaveChangesAsync()

@@ -503,6 +503,7 @@ namespace SmartWorkSpaseADL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ApprovedById")
@@ -525,7 +526,13 @@ namespace SmartWorkSpaseADL.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("RatePerMinute")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("StartedAt")
                         .HasColumnType("datetime2");

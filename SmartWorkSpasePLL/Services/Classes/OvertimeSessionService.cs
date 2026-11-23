@@ -162,8 +162,7 @@ namespace SmartWorkSpasePLL.Services.Classes
         }
 
         // 2. Get My Overtime Sessions
-        public async Task<List<OvertimeSessionResponse>>
-            GetMyOvertimeSessionsAsync(string employeeId)
+        public async Task<List<OvertimeSessionResponse>> GetMyOvertimeSessionsAsync(string employeeId)
         {
             ValidateEmployeeId(employeeId);
 
@@ -191,8 +190,7 @@ namespace SmartWorkSpasePLL.Services.Classes
         }
 
         // 3. Get Overtime Session By ID
-        public async Task<OvertimeSessionResponse>
-            GetOvertimeSessionByIdAsync(int id, string employeeId)
+        public async Task<OvertimeSessionResponse> GetOvertimeSessionByIdAsync(int id, string employeeId)
         {
             ValidateEmployeeId(employeeId);
             ValidateSessionId(id);
@@ -217,8 +215,7 @@ namespace SmartWorkSpasePLL.Services.Classes
         }
 
         // 4. Get My Overtime Sessions Summary
-        public async Task<OvertimeSessionSummaryResponse>
-            GetMyOvertimeSessionsSummaryAsync(string employeeId)
+        public async Task<OvertimeSessionSummaryResponse> GetMyOvertimeSessionsSummaryAsync(string employeeId)
         {
             ValidateEmployeeId(employeeId);
 
@@ -280,8 +277,7 @@ namespace SmartWorkSpasePLL.Services.Classes
         }
 
         // 5. Approve Overtime Session
-        public async Task<OvertimeSessionResponse>
-            ApproveOvertimeSessionAsync(int id, string approverId)
+        public async Task<OvertimeSessionResponse> ApproveOvertimeSessionAsync(int id, string approverId)
         {
             ValidateSessionId(id);
             ValidateApproverId(approverId);
@@ -319,8 +315,7 @@ namespace SmartWorkSpasePLL.Services.Classes
         }
 
         // 6. Reject Overtime Session
-        public async Task<OvertimeSessionResponse>
-            RejectOvertimeSessionAsync(int id, string approverId)
+        public async Task<OvertimeSessionResponse> RejectOvertimeSessionAsync(int id, string approverId)
         {
             ValidateSessionId(id);
             ValidateApproverId(approverId);

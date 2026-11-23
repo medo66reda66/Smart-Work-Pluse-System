@@ -62,10 +62,7 @@ namespace SmartWorkSpasePL
             >();
 
             // Overtime Service
-            builder.Services.AddScoped<
-                IOvertimeSessionService,
-                OvertimeSessionService
-            >();
+            builder.Services.AddScoped< IOvertimeSessionService, OvertimeSessionService >();
 
             // Development
             builder.Services.AddIdentity<Applicationuser, IdentityRole>(option =>
@@ -90,6 +87,7 @@ namespace SmartWorkSpasePL
             builder.Services.AddScoped<IHrService, HrService>();
             builder.Services.AddScoped<IAdminService, AdminService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddScoped<IDBIntializer, DBIntializer>();
             builder.Services.AddScoped<IDBIntializer, DBIntializer>();
 
 

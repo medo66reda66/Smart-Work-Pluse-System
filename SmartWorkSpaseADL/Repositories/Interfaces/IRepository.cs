@@ -11,16 +11,21 @@ namespace SmartWorkSpaseADL.Repositories.Interfaces
 
         void Delete(T entity);
 
-        Task<List<T>> GetAllAsync(
-            Expression<Func<T, bool>>? filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null
-        );
+          Task<List<T>> GetAllAsync(
+             Expression<Func<T, bool>>? filter = null,
+             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+             Expression<Func<T, object>>[]? includes = null
+             );
+
 
         Task<T> GetByIdAsync(
-            Expression<Func<T, bool>>? filter = null
-        );
+            Expression<Func<T, bool>>? filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+            Expression<Func<T, object>>[]? includes = null
+            );
+        
 
-        Task SaveChangesAsync();
+            Task SaveChangesAsync();
     }
 }
 
