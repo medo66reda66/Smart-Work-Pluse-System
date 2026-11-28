@@ -1,4 +1,5 @@
 
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -89,6 +90,11 @@ namespace SmartWorkSpasePL
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IDBIntializer, DBIntializer>();
             builder.Services.AddScoped<IProfileService, ProfileService>();
+            builder.Services.AddScoped<IAttendanceRecordAndCardService, AttendanceRecordAndCardService>();
+            builder.Services.AddScoped<IRepository<Card>, Repository<Card>>();
+            builder.Services.AddScoped<IRepository<AttendanceRecord>, Repository<AttendanceRecord>>();
+            builder.Services.AddScoped<ICardService, CardService>();
+            builder.Services.AddScoped<IAttendanceRecordRepository, AttendanceRecordRepository>();
 
 
             builder.Services.AddAuthentication(opt => {
@@ -109,6 +115,18 @@ namespace SmartWorkSpasePL
                };
            });
 
+            builder.Services.AddHangfire(config =>
+                config
+                    .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                    .UseSimpleAssemblyNameTypeSerializer()
+                    .UseRecommendedSerializerSettings()
+                    .UseSqlServerStorage(
+                        builder.Configuration.GetConnectionString("DefaultConnection")
+                    )
+            );
+
+            builder.Services.AddHangfireServer();
+
             var app = builder.Build();
 
             var scope = app.Services.CreateScope();
@@ -121,11 +139,24 @@ namespace SmartWorkSpasePL
                 app.MapOpenApi();
                 app.MapScalarApiReference();
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseHangfireDashboard();
+            RecurringJob.AddOrUpdate<IAttendanceRecordAndCardService>(
+                "Daily-Checkin",
+                service => service.RunDailyCheckin(),
+                "30 16 * * 0-4",
+                new RecurringJobOptions
+                {
+                    TimeZone = TimeZoneInfo.FindSystemTimeZoneById(
+                        "Egypt Standard Time"
+                    )
+                }
+            );
 
             app.MapControllers();
 

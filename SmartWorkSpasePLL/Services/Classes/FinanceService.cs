@@ -2,6 +2,7 @@
 using SmartWorkSpaseADL.Entities;
 using SmartWorkSpaseADL.Repositories.Interfaces;
 using SmartWorkSpasePLL.Services.Interfaces;
+using SmartWorkSpasePLL.Utilise;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,22 +43,26 @@ namespace SmartWorkSpasePLL.Services.Classes
             }
             user.BasicSalary = basicSalary;
             var result =await _userManager.UpdateAsync(user);
-            var HRUser = await _userManager.FindByEmailAsync("hr123@Hoda.com");
+            var HRUser = await _userManager.GetUsersInRoleAsync(DS.HR_ROLE);
             if (HRUser == null)
             {
                 return false;
             }
-            var notification = new Notification
+            foreach (var hruser in HRUser)
             {
-                ApplicationUserId = HRUser.Id,
-                Type = "Finance",
-                Message = $"Your basic salary has been updated to {basicSalary:C}.",
-                IsRead = false,
-                CreatedAt = DateTime.UtcNow,
-                RelatedUserId = financeUserId
+                var notification = new Notification
+                {
+                    ApplicationUserId = hruser.Id,
+                    Type = "Finance",
+                    Message = $"Your basic salary has been updated to {basicSalary:C}.",
+                    IsRead = false,
+                    CreatedAt = DateTime.UtcNow,
+                    RelatedUserId = financeUserId
 
-            };
-            _notificationRepository.Add(notification);
+                };
+                _notificationRepository.Add(notification);
+            }
+        
             await _notificationRepository.SaveChangesAsync();
             return result.Succeeded;
         }

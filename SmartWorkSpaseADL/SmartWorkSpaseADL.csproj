@@ -20,10 +20,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Repositories\Classes\" />
+    <PackageReference Include="UmbracoCms.Core" Version="8.18.15" />
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@ using SmartWorkSpaseADL.Entities;
 using SmartWorkSpasePLL.Dtos.Request;
 using SmartWorkSpasePLL.Dtos.Respons.Result;
 using SmartWorkSpasePLL.Services.Interfaces;
+using SmartWorkSpasePLL.Utilise;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -43,25 +44,28 @@ namespace SmartWorkSpasePLL.Services.Classes
             string managerId = null;
             if (request.Role == Role.Hr || request.Role == Role.Finance || request.Role == Role.manager)
             {
-                var AdminUser = await _userManager.FindByEmailAsync("Admin123@Hoda.com");
+                var AdminUser = await _userManager.GetUsersInRoleAsync(DS.ADMIN_ROLE);
                 if (AdminUser == null)
                 {
                     return false;
                 }
-                managerId = AdminUser.Id;
-                if (request.Role == Role.Hr || request.Role == Role.Finance)
+                foreach (var Admin in AdminUser)
                 {
-                    var notification = new Notification
+                    managerId = Admin.Id;
+                    if (request.Role == Role.Hr || request.Role == Role.Finance)
                     {
-                        ApplicationUserId = AdminUser.Id, // المستلم: Admin
-                        Type = "NewEmployee",
-                        Message = $"Please add the basic salary for employee {request.FullName}.",
-                        IsRead = false,
-                        CreatedAt = DateTime.Now,
-                        // ربط الإشعار بالموظف المطلوب تحديد راتبه
-                        RelatedUserId = null // يمكنك وضع معرف الموظف الجديد هنا إذا كان متاحًا
-                    };
-                    _context.Notifications.Add(notification);
+                        var notification = new Notification
+                        {
+                            ApplicationUserId = Admin.Id, // المستلم: Admin
+                            Type = "NewEmployee",
+                            Message = $"Please add the basic salary for employee {request.FullName}.",
+                            IsRead = false,
+                            CreatedAt = DateTime.Now,
+                            // ربط الإشعار بالموظف المطلوب تحديد راتبه
+                            RelatedUserId = null // يمكنك وضع معرف الموظف الجديد هنا إذا كان متاحًا
+                        };
+                        _context.Notifications.Add(notification);
+                    }
                 }
 
             }
@@ -92,18 +96,21 @@ namespace SmartWorkSpasePLL.Services.Classes
 
             if(request.Role == Role.Employee || request.Role == Role.manager)
             {
-                var FinanceUser = await _userManager.FindByEmailAsync("finance123@Hoda.com");
-                var notification = new Notification
+                var FinanceUser = await _userManager.GetUsersInRoleAsync(DS.FINANCE_ROLE);
+                foreach (var user in FinanceUser)
                 {
-                    ApplicationUserId = FinanceUser!.Id, // المستلم: Finance
-                    Type = "NewEmployee",
-                    Message = $"Please add the basic salary for employee {newUser.FullName}.",
-                    IsRead = false,
-                    CreatedAt = DateTime.Now,
-                    // ربط الإشعار بالموظف المطلوب تحديد راتبه
-                    RelatedUserId = newUser.Id
-                };
-                _context.Notifications.Add(notification);
+                    var notification = new Notification
+                    {
+                        ApplicationUserId = user!.Id, // المستلم: Finance
+                        Type = "NewEmployee",
+                        Message = $"Please add the basic salary for employee {newUser.FullName}.",
+                        IsRead = false,
+                        CreatedAt = DateTime.Now,
+                        // ربط الإشعار بالموظف المطلوب تحديد راتبه
+                        RelatedUserId = newUser.Id
+                    };
+                    _context.Notifications.Add(notification);
+                }
             }
             
             var result = await _userManager.CreateAsync(newUser, request.Password);
