@@ -282,6 +282,12 @@ namespace SmartWorkSpaseADL.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsLeaveDay")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Status")
                         .HasMaxLength(30)
                         .HasColumnType("int");

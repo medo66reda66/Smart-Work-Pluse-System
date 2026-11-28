@@ -24,7 +24,7 @@ namespace SmartWorkSpasePLL.Services.Classes
         {
             return await _companySettingRepository.GetAllAsync();
         }
-        public async Task<CompanySetting> GetCompanySettingByIdAsync(int id)
+        public async Task<CompanySetting> GetCompanySettingByIdAsync(int id = 1)
         {
             return await _companySettingRepository.GetByIdAsync(x => x.Id == id);
         }

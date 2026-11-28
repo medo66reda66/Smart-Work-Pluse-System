@@ -13,6 +13,13 @@ namespace SmartWorkSpaseADL.Entities
         Cancelled = 2,
         Settled = 3
     }
+    public enum CardColor
+    {
+        Green = 1,   // حضر قبل 8
+        Blue = 2,    // حضر من 8 لـ 9
+        Black = 3 ,   // حضر بعد 9، أو غياب
+        Yellow = 4 , // اليوم من 3 ايام في الشهر الي مدفوعين الاجر
+    }
     public class Card
     {
         public int Id { get; set; }
@@ -20,7 +27,7 @@ namespace SmartWorkSpaseADL.Entities
         public Applicationuser ApplicationUser { get; set; } = null!;
         public int AttendanceRecordId { get; set; }
         public AttendanceRecord AttendanceRecord { get; set; } = null!;
-        public string Color { get; set; } = string.Empty;
+        public CardColor Color { get; set; }
 
         public string Source { get; set; } = string.Empty;
 
